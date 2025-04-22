@@ -1,0 +1,19 @@
+services:
+  - type: static
+    name: rollbux-frontend
+    routes:
+      - source: /static
+        destination: /
+    staticDir: .
+
+  - type: web
+    name: rollbux-backend
+    env: node
+    region: oregon
+    buildCommand: npm install
+    startCommand: npm start
+    rootDir: backend
+    envVars:
+      - key: MONGODB_URI
+        value: mongodb://user:pass@host:port/db
+
